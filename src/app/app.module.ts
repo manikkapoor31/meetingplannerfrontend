@@ -7,6 +7,9 @@ import { SignupComponent } from './signup/signup.component';
 import { RouterModule,ActivatedRoute,ParamMap} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http'
+import { ToastrModule } from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -17,12 +20,17 @@ import { HttpClientModule, HttpClient } from '@angular/common/http'
   imports: [
     BrowserModule,
     FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    HttpClientModule,
     RouterModule.forRoot([
       {path:'*',component:LoginComponent},
       {path:'**',component:LoginComponent},
-      {path:'login',component:LoginComponent}
+      {path:'login',component:LoginComponent},
+      {path:'signup',component:SignupComponent}
     ])
   ],
+  exports:[RouterModule],
   providers: [],
   bootstrap: [AppComponent]
 })

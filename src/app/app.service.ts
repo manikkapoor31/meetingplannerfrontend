@@ -14,8 +14,8 @@ import { HttpErrorResponse,HttpParams} from '@angular/common/http';
 })
 export class AppService 
 {
-  private url='https://manikmeetingplanner.xyz';
-  constructor(public http: HttpClient) { }
+  private url="https://manikmeetingplanner.xyz";
+  constructor(public http:HttpClient) { }
 
   public getUserInfoFromLocalStorage=()=>
   {
@@ -48,7 +48,6 @@ export class AppService
 
     const params = new HttpParams()
       .set('authToken', Cookie.get('authtoken'))
-
     return this.http.post(`${this.url}/api/v1/users/logout`, params);
 
   }
@@ -64,6 +63,4 @@ export class AppService
     console.error(errorMessage);
     return Observable.throw(errorMessage);
   }
-
-
 }

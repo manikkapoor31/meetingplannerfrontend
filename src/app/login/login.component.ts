@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, Routes } from '@angular/router';
+import { Router } from '@angular/router';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { AppService } from './../app.service';
 import { ToastrService } from 'ngx-toastr';
@@ -13,31 +13,36 @@ export class LoginComponent implements OnInit
 {
   public email: any;
   public password: any;
-  constructor(public appService: AppService,public router: Router,private toastr: ToastrService) { }
-
+  
+  constructor(public appService: AppService,public router: Router,private toastr: ToastrService){}
   ngOnInit(): void {
   }
   public goToSignUp: any = () => {
-    this.router.navigate(['/sign-up']);
+
+    this.router.navigate(['/signup']);
+
   } // end goToSignUp
-  public signinFunction: any = () => 
-  {
-    if (!this.email) 
-    {
-      this.toastr.warning('enter email')
-    } 
-    else if (!this.password) 
-    {
+
+  public signinFunction: any = () => {
+
+    if (!this.email) {
+      this.toastr.error('enter email')
+
+    } else if (!this.password) {
+
       this.toastr.warning('enter password')
-    } else 
-    {
+
+
+    } else {
+
       let data = {
         email: this.email,
         password: this.password
       }
+
       this.appService.signinFunction(data)
-        .subscribe((apiResponse) => 
-        {
+        .subscribe((apiResponse) => {
+
           if (apiResponse.status === 200) {
             console.log(apiResponse)
 
@@ -52,13 +57,19 @@ export class LoginComponent implements OnInit
              this.router.navigate(['/chat']);
 
           } else {
+
             this.toastr.error(apiResponse.message)
+          
+
           }
+
         }, (err) => {
           this.toastr.error('some error occured')
 
         });
-    } // end condition
-  } // end signinFunction
 
+    } // end condition
+
+  } // end signinFunction
+  
 }
